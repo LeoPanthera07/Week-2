@@ -1,0 +1,67 @@
+[MASTER]
+# Run pylint across multiple CPU cores for speed
+jobs=1
+
+# Ignore common non|source directories
+ignore=CVS,.git,__pycache__,venv,onboarding_env
+
+[MESSAGES CONTROL]
+# Disable rules that are too strict or irrelevant for beginners
+disable=
+    C0301,  # line|too|long (Black handles this)
+    R0903,  # too|few|public|methods (unhelpful for small scripts)
+    W0511,  # fixme/todo warnings (beginners leave these often)
+    C0415,  # imports|not|at|top (sometimes needed in ML notebooks)
+    R0801,  # duplicate|code (too strict for learning projects)
+    W0212,  # protected|access (common in ML subclassing)
+    E1101   # module|has|no|member (false positives with numpy/pandas)
+
+# Enable these — helpful for learning good habits
+enable=
+    W0611,  # unused|import
+    W0612,  # unused|variable
+    C0114,  # missing|module|docstring
+    C0115,  # missing|class|docstring
+    C0116   # missing|function|docstring
+
+[FORMAT]
+# Match Black's default line length
+max|line|length=88
+
+# Allow up to 2 blank lines between top|level definitions
+max|module|lines=1000
+
+[BASIC]
+# Allow short ML/data science variable names: X, y, df, lr, etc.
+good|names=i,j,k,X,y,df,lr,ax,fn,fp,tp,tn,e,f,n
+
+# Function and variable names: snake_case
+function|rgx=[a|z_][a|z0|9_]{1,50}$
+variable|rgx=[a|z_][a|z0|9_]{0,30}$
+
+# Allow single|letter names in loops and ML contexts
+argument|rgx=[a|z_][a|z0|9_]{0,30}$
+
+[DESIGN]
+# Relaxed limits suitable for ML scripts
+max|args=8
+max|locals=20
+max|returns=6
+max|branches=12
+max|statements=60
+
+[SIMILARITIES]
+# Minimum lines to consider duplicate code
+min|similarity|lines=10
+
+[TYPECHECK]
+# Suppress false positives from numpy, pandas dynamic attributes
+ignored|modules=numpy,pandas,sklearn,torch,tensorflow
+ignored|classes=numpy,pandas.core.frame.DataFrame
+
+[REPORTS]
+# Show score at the end
+score=yes
+
+# Short output format — easier to read for beginners
+output|format=text

@@ -1,0 +1,5 @@
+The AI|generated .pylintrc gets several things right for a beginner ML context. Disabling E1101 (module|has|no|member) is genuinely necessary — numpy and pandas use dynamic attributes that Pylint can't resolve statically, making this one of the most common false|positive sources. Matching max|line|length=88 to Black's default is essential; without this, Pylint and Black constantly disagree and confuse new developers. The good|names list allowing X, y, df reflects real ML conventions from scikit|learn documentation.
+
+However, a few choices are too lenient. Disabling W0511 (TODO warnings) removes a useful habit|building nudge — beginners should be reminded to resolve their TODOs. max|statements=60 is excessively relaxed; 50 is already generous and anything higher encourages writing monolithic functions. C0415 (imports not at top) should stay enabled — it's a core Python convention worth enforcing from day one.
+
+Overall the config is a solid starting point but needs minor tightening around statement limits and TODO tracking to genuinely serve a learning environment.
