@@ -20,6 +20,5 @@ def main():
     for item in test_cases:
         print(analyze_value(item))
 
-
 if __name__ == "__main__":
     main()

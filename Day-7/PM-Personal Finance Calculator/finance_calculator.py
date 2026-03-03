@@ -126,20 +126,135 @@ def print_report(name, annual_salary, tax_percent, monthly_rent, savings_percent
     print(f"  {'Total Rent':<14}: {format_inr(annual_rent)}")
     print(LINE_EQ)
 
+def calc_health_score(rent_ratio, savings_percent, disposable, net_monthly):
+    """Calculate a financial health score out of 100 based on rent ratio, savings, and disposable income."""
+    score = 0
 
-def main():
-    """Entry point: collect inputs, validate, and print report."""
-    print("\n--- Personal Finance Calculator ---\n")
+    # Rent ratio score (40 pts)
+    if rent_ratio < 30:
+        score += 40
+    elif rent_ratio <= 40:
+        score += 20
+    else:
+        score += 0
 
+    # Savings rate score (30 pts)
+    if savings_percent >= 20:
+        score += 30
+    elif savings_percent >= 10:
+        score += 15
+    else:
+        score += 0
+
+    # Disposable income score (30 pts)
+    disposable_ratio = calc_rent_ratio(disposable, net_monthly)
+    if disposable_ratio >= 30:
+        score += 30
+    elif disposable_ratio >= 15:
+        score += 15
+    else:
+        score += 0
+
+    return score
+
+
+def collect_employee_data(label):
+    """Prompt and collect all inputs for one employee."""
+    print(f"\n--- Enter details for {label} ---")
     name = get_valid_string("Employee name: ")
     annual_salary = get_valid_float("Annual salary (INR): ", min_value=0.01)
     tax_percent = get_valid_float("Tax bracket % (0-50): ", min_value=0.0, max_value=50.0)
     monthly_rent = get_valid_float("Monthly rent (INR): ", min_value=0.01)
     savings_percent = get_valid_float("Savings goal % (0-100): ", min_value=0.0, max_value=100.0)
+    return name, annual_salary, tax_percent, monthly_rent, savings_percent
 
-    print()
-    print_report(name, annual_salary, tax_percent, monthly_rent, savings_percent)
 
+def compute_summary(annual_salary, tax_percent, monthly_rent, savings_percent):
+    """Return a dict of all computed financial values for one employee."""
+    gross_monthly = calc_monthly_salary(annual_salary)
+    monthly_tax = calc_tax(gross_monthly, tax_percent)
+    net_monthly = calc_net_salary(gross_monthly, monthly_tax)
+    rent_ratio = calc_rent_ratio(monthly_rent, net_monthly)
+    monthly_savings = calc_savings(net_monthly, savings_percent)
+    disposable = calc_disposable(net_monthly, monthly_rent, monthly_savings)
+    health_score = calc_health_score(rent_ratio, savings_percent, disposable, net_monthly)
+
+    return {
+        "gross_monthly": gross_monthly,
+        "monthly_tax": monthly_tax,
+        "net_monthly": net_monthly,
+        "rent_ratio": rent_ratio,
+        "monthly_savings": monthly_savings,
+        "disposable": disposable,
+        "annual_tax": monthly_tax * 12,
+        "annual_savings": monthly_savings * 12,
+        "annual_rent": monthly_rent * 12,
+        "health_score": health_score,
+    }
+
+
+def print_comparison(name1, data1, rent1, savings_pct1, name2, data2, rent2, savings_pct2):
+    """Print a side-by-side comparison table of two employees."""
+    col = 20
+    print("\n" + "=" * 64)
+    print("          EMPLOYEE COMPARISON TABLE")
+    print("=" * 64)
+    print(f"{'Metric':<22} {name1:>{col}} {name2:>{col}}")
+    print("-" * 64)
+
+    rows = [
+        ("Gross Monthly",   format_inr(data1["gross_monthly"]),    format_inr(data2["gross_monthly"])),
+        ("Monthly Tax",     format_inr(data1["monthly_tax"]),      format_inr(data2["monthly_tax"])),
+        ("Net Salary",      format_inr(data1["net_monthly"]),      format_inr(data2["net_monthly"])),
+        ("Rent",            format_inr(rent1),                     format_inr(rent2)),
+        ("Rent Ratio",      f"{data1['rent_ratio']:.1f}%",         f"{data2['rent_ratio']:.1f}%"),
+        ("Savings %",       f"{savings_pct1:.1f}%",                f"{savings_pct2:.1f}%"),
+        ("Monthly Savings", format_inr(data1["monthly_savings"]),  format_inr(data2["monthly_savings"])),
+        ("Disposable",      format_inr(data1["disposable"]),       format_inr(data2["disposable"])),
+        ("Annual Tax",      format_inr(data1["annual_tax"]),       format_inr(data2["annual_tax"])),
+        ("Annual Savings",  format_inr(data1["annual_savings"]),   format_inr(data2["annual_savings"])),
+        ("Health Score",    f"{data1['health_score']}/100",        f"{data2['health_score']}/100"),
+    ]
+
+    for label, val1, val2 in rows:
+        print(f"  {label:<20} {val1:>{col}} {val2:>{col}}")
+
+    print("=" * 64)
+
+
+def main_comparison():
+    """Entry point for 2-employee comparison mode."""
+    print("\n=== Two-Employee Financial Comparison ===")
+
+    name1, sal1, tax1, rent1, sav1 = collect_employee_data("Employee 1")
+    name2, sal2, tax2, rent2, sav2 = collect_employee_data("Employee 2")
+
+    data1 = compute_summary(sal1, tax1, rent1, sav1)
+    data2 = compute_summary(sal2, tax2, rent2, sav2)
+
+    print_report(name1, sal1, tax1, rent1, sav1)
+    print_report(name2, sal2, tax2, rent2, sav2)
+    print_comparison(name1, data1, rent1, sav1, name2, data2, rent2, sav2)
+
+
+def main():
+    """Entry point: choose single employee report or two-employee comparison."""
+    print("\n--- Personal Finance Calculator ---")
+    print("1. Single employee report")
+    print("2. Two-employee comparison")
+    choice = input("Choose (1 or 2): ").strip()
+
+    if choice == "2":
+        main_comparison()
+    else:
+        print("\n--- Single Employee Mode ---\n")
+        name = get_valid_string("Employee name: ")
+        annual_salary = get_valid_float("Annual salary (INR): ", min_value=0.01)
+        tax_percent = get_valid_float("Tax bracket % (0-50): ", min_value=0.0, max_value=50.0)
+        monthly_rent = get_valid_float("Monthly rent (INR): ", min_value=0.01)
+        savings_percent = get_valid_float("Savings goal % (0-100): ", min_value=0.0, max_value=100.0)
+        print()
+        print_report(name, annual_salary, tax_percent, monthly_rent, savings_percent)
 
 if __name__ == "__main__":
     main()
