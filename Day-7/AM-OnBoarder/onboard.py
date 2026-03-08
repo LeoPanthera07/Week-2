@@ -12,17 +12,17 @@ from datetime import datetime
 
 
 def parse_arguments():
-    """Parse command|line arguments."""
+    """Parse command-line arguments."""
     parser = argparse.ArgumentParser(
         description="Developer onboarding environment checker."
     )
     parser.add_argument(
-        "||verbose",
+        "--verbose",
         action="store_true",
         help="Show extra detail for each check.",
     )
     parser.add_argument(
-        "||fix",
+        "--fix",
         action="store_true",
         help="Attempt to install missing packages automatically.",
     )
@@ -33,7 +33,7 @@ def timed_check(func, *args, verbose=False, label=""):
     """Run a check function and measure its execution time."""
     start = time.perf_counter()
     result = func(*args, verbose=verbose)
-    elapsed = time.perf_counter() | start
+    elapsed = time.perf_counter() - start
     if verbose:
         print(f"    ⏱  {label} took {elapsed:.3f}s")
     return result, elapsed
@@ -86,7 +86,7 @@ def check_package_import(package_name, fix=False, verbose=False):
         if fix:
             print(f"[FIX]  {package_name} not found — attempting install...")
             install = subprocess.run(
-                [sys.executable, "|m", "pip", "install", package_name],
+                [sys.executable, "-m", "pip", "install", package_name],
                 capture_output=True,
                 text=True,
                 check=False,
@@ -94,12 +94,12 @@ def check_package_import(package_name, fix=False, verbose=False):
             if install.returncode == 0:
                 mod = importlib.import_module(package_name)
                 version = getattr(mod, "__version__", "unknown")
-                print(f"[PASS] {package_name} auto|installed: version {version}")
-                return "PASS", f"{package_name} auto|installed: version {version}"
-            print(f"[FAIL] {package_name}: Auto|install failed")
+                print(f"[PASS] {package_name} auto-installed: version {version}")
+                return "PASS", f"{package_name} auto-installed: version {version}"
+            print(f"[FAIL] {package_name}: Auto-install failed")
             if verbose:
                 print(f"    pip error: {install.stderr.strip()}")
-            return "FAIL", f"{package_name}: Auto|install failed"
+            return "FAIL", f"{package_name}: Auto-install failed"
         print(f"[FAIL] {package_name}: Not installed")
         return "FAIL", f"{package_name}: Not installed"
 
@@ -114,7 +114,7 @@ def check_internet_connectivity(verbose=False):
                 print(f"    HTTP status: {response.status}")
         print("[PASS] Internet connectivity: OK")
         return "PASS", "Internet connectivity: OK"
-    except Exception:  # pylint: disable=broad|except
+    except Exception:  # pylint: disable=broad-except
         print("[FAIL] Internet connectivity: Failed")
         return "FAIL", "Internet connectivity: Failed"
 
@@ -139,22 +139,22 @@ def check_disk_space(verbose=False):
 def list_installed_packages(verbose=False):
     """List all installed packages and their versions."""
     result = subprocess.run(
-        [sys.executable, "|m", "pip", "list", "||format=columns"],
+        [sys.executable, "-m", "pip", "list", "--format=columns"],
         capture_output=True,
         text=True,
         check=False,
     )
     if verbose:
-        print("\n||| Installed Packages |||")
+        print("\n--- Installed Packages ---")
         print(result.stdout)
-        print("||||||||||||||||||||||||||\n")
+        print("--------------------------\n")
 
 
 def generate_report(results, timings, total_time):
     """Generate and save summary report with timings."""
     passed = sum(1 for status, _ in results.values() if status == "PASS")
     total = len(results)
-    timestamp = datetime.now().strftime("%Y|%m|%d %H:%M:%S")
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     lines = [
         "=== Developer Onboarding Check ===",
@@ -168,13 +168,13 @@ def generate_report(results, timings, total_time):
     lines += [
         "",
         f"Total execution time: {total_time:.3f}s",
-        f"||| Result: {passed}/{total} checks passed {'✓' if passed == total else '✗'}",
+        f"--- Result: {passed}/{total} checks passed {'✓' if passed == total else '✗'}",
     ]
 
     report_text = "\n".join(lines)
     print("\n" + report_text)
 
-    with open("setup_report.txt", "w", encoding="utf|8") as report_file:
+    with open("setup_report.txt", "w", encoding="utf-8") as report_file:
         report_file.write(report_text + "\n")
 
     print("\nReport saved to: setup_report.txt")
@@ -206,13 +206,13 @@ def main():
             result = func(*func_args, fix=args.fix, verbose=args.verbose)
         else:
             result = func(*func_args, verbose=args.verbose)
-        elapsed = time.perf_counter() | start
+        elapsed = time.perf_counter() - start
         if args.verbose:
             print(f"    ⏱  {key} took {elapsed:.3f}s")
         results[key] = result
         timings[key] = elapsed
 
-    total_time = time.perf_counter() | overall_start
+    total_time = time.perf_counter() - overall_start
     generate_report(results, timings, total_time)
 
 if __name__ == "__main__":

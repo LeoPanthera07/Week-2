@@ -143,7 +143,7 @@ PassengerId,Pclass,Name,Sex,Age,SibSp,Parch,Ticket,Fare,Cabin,Embarked
 1033,1,"Daniels, Miss. Sarah",female,33,0,0,113781,151.55,,S
 1034,1,"Ryerson, Mr. Arthur Larned",male,61,1,3,PC 17608,262.375,B57 B59 B63 B66,C
 1035,2,"Beauchamp, Mr. Henry James",male,28,0,0,244358,26,,S
-1036,1,"Lindeberg|Lind, Mr. Erik Gustaf (Mr Edward Lingrey"")""",male,42,0,0,17475,26.55,,S
+1036,1,"Lindeberg-Lind, Mr. Erik Gustaf (Mr Edward Lingrey"")""",male,42,0,0,17475,26.55,,S
 1037,3,"Vander Planke, Mr. Julius",male,31,3,0,345763,18,,S
 1038,1,"Hilliard, Mr. Herbert Henry",male,,0,0,17463,51.8625,E46,S
 1039,3,"Davies, Mr. Evan",male,22,0,0,SC/A4 23568,8.05,,S
@@ -164,7 +164,7 @@ PassengerId,Pclass,Name,Sex,Age,SibSp,Parch,Ticket,Fare,Cabin,Embarked
 1054,2,"Wright, Miss. Marion",female,26,0,0,220844,13.5,,S
 1055,3,"Pearce, Mr. Ernest",male,,0,0,343271,7,,S
 1056,2,"Peruschitz, Rev. Joseph Maria",male,41,0,0,237393,13,,S
-1057,3,"Kink|Heilmann, Mrs. Anton (Luise Heilmann)",female,26,1,1,315153,22.025,,S
+1057,3,"Kink-Heilmann, Mrs. Anton (Luise Heilmann)",female,26,1,1,315153,22.025,,S
 1058,1,"Brandeis, Mr. Emil",male,48,0,0,PC 17591,50.4958,B10,C
 1059,3,"Ford, Mr. Edward Watson",male,18,2,2,W./C. 6608,34.375,,S
 1060,1,"Cassebeer, Mrs. Henry Arthur Jr (Eleanor Genevieve Fosdick)",female,,0,0,17770,27.7208,,C
@@ -346,7 +346,7 @@ PassengerId,Pclass,Name,Sex,Age,SibSp,Parch,Ticket,Fare,Cabin,Embarked
 1236,3,"van Billiard, Master. James William",male,,1,1,A/5. 851,14.5,,S
 1237,3,"Abelseth, Miss. Karen Marie",female,16,0,0,348125,7.65,,S
 1238,2,"Botsford, Mr. William Hull",male,26,0,0,237670,13,,S
-1239,3,"Whabee, Mrs. George Joseph (Shawneene Abi|Saab)",female,38,0,0,2688,7.2292,,C
+1239,3,"Whabee, Mrs. George Joseph (Shawneene Abi-Saab)",female,38,0,0,2688,7.2292,,C
 1240,2,"Giles, Mr. Ralph",male,24,0,0,248726,13.5,,S
 1241,2,"Walcroft, Miss. Nellie",female,31,0,0,F.C.C. 13528,21,,S
 1242,1,"Greenfield, Mrs. Leo David (Blanche Strouse)",female,45,0,1,PC 17759,63.3583,D10 D12,C
@@ -393,11 +393,11 @@ PassengerId,Pclass,Name,Sex,Age,SibSp,Parch,Ticket,Fare,Cabin,Embarked
 1283,1,"Lines, Mrs. Ernest H (Elizabeth Lindsey James)",female,51,0,1,PC 17592,39.4,D28,S
 1284,3,"Abbott, Master. Eugene Joseph",male,13,0,2,C.A. 2673,20.25,,S
 1285,2,"Gilbert, Mr. William",male,47,0,0,C.A. 30769,10.5,,S
-1286,3,"Kink|Heilmann, Mr. Anton",male,29,3,1,315153,22.025,,S
+1286,3,"Kink-Heilmann, Mr. Anton",male,29,3,1,315153,22.025,,S
 1287,1,"Smith, Mrs. Lucien Philip (Mary Eloise Hughes)",female,18,1,0,13695,60,C31,S
 1288,3,"Colbert, Mr. Patrick",male,24,0,0,371109,7.25,,Q
-1289,1,"Frolicher|Stehli, Mrs. Maxmillian (Margaretha Emerentia Stehli)",female,48,1,1,13567,79.2,B41,C
-1290,3,"Larsson|Rondberg, Mr. Edvard A",male,22,0,0,347065,7.775,,S
+1289,1,"Frolicher-Stehli, Mrs. Maxmillian (Margaretha Emerentia Stehli)",female,48,1,1,13567,79.2,B41,C
+1290,3,"Larsson-Rondberg, Mr. Edvard A",male,22,0,0,347065,7.775,,S
 1291,3,"Conlon, Mr. Thomas Henry",male,31,0,0,21332,7.7333,,Q
 1292,1,"Bonnell, Miss. Caroline",female,30,0,0,36928,164.8667,C7,S
 1293,2,"Gale, Mr. Harry",male,38,1,0,28664,21,,S

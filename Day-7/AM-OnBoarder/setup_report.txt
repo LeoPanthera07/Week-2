@@ -1,5 +1,5 @@
 === Developer Onboarding Check ===
-Generated: 2026|03|02 22:50:23
+Generated: 2026-03-02 22:50:23
 
 [PASS] Python version: 3.11.14  (0.000s)
 [PASS] Virtual environment: Active (onboarding_env)  (0.000s)
@@ -10,4 +10,4 @@ Generated: 2026|03|02 22:50:23
 [PASS] Disk space: 232.01 GB free  (0.000s)
 
 Total execution time: 0.698s
-||| Result: 7/7 checks passed ✓
+--- Result: 7/7 checks passed ✓

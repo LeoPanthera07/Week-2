@@ -14,7 +14,7 @@ ANSWER: NO — Age is NOT linearly related to survival.
 STATISTICAL JUSTIFICATION:
 
 1. Pearson Correlation Coefficient:
-   r = |0.0777 (computed using np.corrcoef())
+   r = -0.0777 (computed using np.corrcoef())
 
    Interpretation: This indicates a NEGLIGIBLE negative linear relationship.
 
@@ -32,18 +32,18 @@ STATISTICAL JUSTIFICATION:
 
    Our |r| = 0.078 falls in the "negligible" category.
 
-4. Non|Linear Patterns Observed:
+4. Non-Linear Patterns Observed:
    • Children (< 15): 59.4% survival rate
-   • Adults (15|60): 38.9% survival rate  
+   • Adults (15-60): 38.9% survival rate  
    • Seniors (> 60): 22.7% survival rate
 
-   This U|shaped pattern (children prioritized, seniors disadvantaged) cannot
-   be captured by linear correlation. The relationship is NON|LINEAR.
+   This U-shaped pattern (children prioritized, seniors disadvantaged) cannot
+   be captured by linear correlation. The relationship is NON-LINEAR.
 
 BUSINESS INTERPRETATION:
 
 Age alone is a poor linear predictor of survival. The "women and children 
-first" protocol created a non|linear advantage for young passengers, while 
+first" protocol created a non-linear advantage for young passengers, while 
 elderly passengers faced mobility constraints during evacuation. Any survival 
 model should use AGE GROUPS (categorical) rather than raw age (continuous).
 
@@ -60,21 +60,21 @@ ANSWER: NO — Gender DOMINATES wealth in predicting survival.
 
 STATISTICAL EVIDENCE:
 
-1. Cross|Tabulation Analysis (Sex × FareGroup):
+1. Cross-Tabulation Analysis (Sex × FareGroup):
 
    Survival Rates:
 
    | Gender | Low Fare | Medium Fare | High Fare |
-   |||||||||||||||||||||||||||||||||||||||||||||||
+   |--------|----------|-------------|-----------|
    | Female | 49.0%    | 88.5%       | 96.5%     |
    | Male   | 11.5%    | 21.8%       | 37.5%     |
 
 2. Critical Comparison:
 
-   • Low|fare FEMALES: 49.0% survival
-   • High|fare MALES:  37.5% survival
+   • Low-fare FEMALES: 49.0% survival
+   • High-fare MALES:  37.5% survival
 
-   Gap: +11.5 percentage points in favor of low|fare females
+   Gap: +11.5 percentage points in favor of low-fare females
 
    Even the POOREST women survived at a higher rate than the RICHEST men.
 
@@ -82,11 +82,11 @@ STATISTICAL EVIDENCE:
 
    • Sex_binary (female): r = +0.543 (STRONG positive)
    • Fare:                r = +0.257 (WEAK positive)
-   • Pclass:              r = |0.338 (MODERATE negative)
+   • Pclass:              r = -0.338 (MODERATE negative)
 
    Gender has 2.1× stronger correlation than fare with survival.
 
-4. Within|Gender Patterns:
+4. Within-Gender Patterns:
 
    Among FEMALES:
    • Low fare → 49% survival
@@ -108,12 +108,12 @@ predictor of survival. Wealth only mattered WITHIN gender groups — it could
 not overcome the primary sorting criterion of sex.
 
 This reflects the strict enforcement of social norms during the disaster, 
-where chivalry/honor codes trumped class|based advantages for men.
+where chivalry/honor codes trumped class-based advantages for men.
 
 ═══════════════════════════════════════════════════════════════════════════
 
 
-PART 3 — NUMPY|BASED SURVIVAL SCORE
+PART 3 — NUMPY-BASED SURVIVAL SCORE
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Q3: Does your handcrafted score outperform random guessing significantly?
@@ -157,12 +157,12 @@ STATISTICAL SIGNIFICANCE:
 Using a simple proportion test:
 
 Model vs Random (50%):
-  z = (0.789 | 0.50) / sqrt(0.5 * 0.5 / 891) = 17.24
-  p|value < 0.0001 (HIGHLY significant)
+  z = (0.789 - 0.50) / sqrt(0.5 * 0.5 / 891) = 17.24
+  p-value < 0.0001 (HIGHLY significant)
 
 Model vs Majority (61.6%):
-  z = (0.789 | 0.616) / sqrt(0.616 * 0.384 / 891) = 10.62  
-  p|value < 0.0001 (HIGHLY significant)
+  z = (0.789 - 0.616) / sqrt(0.616 * 0.384 / 891) = 10.62  
+  p-value < 0.0001 (HIGHLY significant)
 
 Both comparisons yield p < 0.0001, meaning the probability of achieving this
 performance by chance is less than 0.01%. The result is STATISTICALLY 
@@ -190,7 +190,7 @@ CONCLUSION:
 YES — the handcrafted score outperforms random guessing with overwhelming 
 statistical significance (p < 0.0001). It demonstrates that transparent, 
 interpretable feature engineering can achieve strong predictive performance 
-without black|box ML models.
+without black-box ML models.
 
 ═══════════════════════════════════════════════════════════════════════════
 
@@ -208,9 +208,9 @@ PROPOSED PRIORITY ORDER:
 
 1. CHILDREN (< 15 years)
    Rationale: 
-   • Limited self|rescue capability
+   • Limited self-rescue capability
    • Highest vulnerability
-   • Long potential life|years saved
+   • Long potential life-years saved
    Historical survival: 59.4%
 
 2. ELDERLY (> 60 years)  
@@ -223,7 +223,7 @@ PROPOSED PRIORITY ORDER:
    Rationale:
    • May require assistance
    • Slower evacuation speed
-   • Cannot self|rescue effectively
+   • Cannot self-rescue effectively
 
 4. FAMILIES with YOUNG CHILDREN
    Rationale:
@@ -231,10 +231,10 @@ PROPOSED PRIORITY ORDER:
    • Keep family units together for psychological stability
    • Parent separation causes trauma
 
-5. REMAINING PASSENGERS (random/first|come|first|served)
+5. REMAINING PASSENGERS (random/first-come-first-served)
    Rationale:
-   • No gender|based discrimination (violates modern equality norms)
-   • No wealth|based discrimination (violates fairness principles)
+   • No gender-based discrimination (violates modern equality norms)
+   • No wealth-based discrimination (violates fairness principles)
 
 KEY DIFFERENCES FROM 1912:
 
@@ -263,15 +263,15 @@ ANSWER: Three critical ethical concerns with automated survival prediction:
    Problem:
    • Historical data encodes societal biases (gender, race, class)
    • Models trained on biased data perpetuate discrimination
-   • Legally protected groups may be systematically de|prioritized
+   • Legally protected groups may be systematically de-prioritized
 
    Example from Our Model:
    • Our model assigns 50% weight to gender (female = higher survival)
    • This was learned from 1912 social norms, not biological necessity
    • Automating this creates gender discrimination in rescue decisions
 
-   Real|World Impact:
-   • Protected characteristics (gender, race, age) used for life|death decisions
+   Real-World Impact:
+   • Protected characteristics (gender, race, age) used for life-death decisions
    • Violates equal protection laws in many jurisdictions
    • Creates disparate impact on minorities
 
@@ -283,18 +283,18 @@ ANSWER: Three critical ethical concerns with automated survival prediction:
 2. OPACITY & ACCOUNTABILITY GAP
 
    Problem:
-   • Black|box models make uninterpretable decisions
+   • Black-box models make uninterpretable decisions
    • No clear responsibility chain when algorithm causes harm
    • Families cannot understand why loved ones were not saved
 
    Accountability Questions:
    • Who is liable? Data scientist? Company? Algorithm? Captain?
    • Can the decision be appealed or overridden?
-   • How do we audit the decision post|disaster?
+   • How do we audit the decision post-disaster?
 
    Example Scenario:
    A passenger with "survival score 0.35" is denied lifeboat access and dies.
-   Post|disaster investigation reveals:
+   Post-disaster investigation reveals:
    • The model used outdated training data
    • A bug in the scoring function reduced their score by 0.2
    • The passenger had a medical condition not captured in the model
@@ -303,7 +303,7 @@ ANSWER: Three critical ethical concerns with automated survival prediction:
 
    Transparency Requirements:
    • GDPR: Right to explanation for automated decisions
-   • But explanations of complex models are often post|hoc rationalizations
+   • But explanations of complex models are often post-hoc rationalizations
    • True interpretability requires sacrificing accuracy (tradeoff)
 
 3. DEHUMANIZATION & TRIAGE ETHICS
@@ -322,13 +322,13 @@ ANSWER: Three critical ethical concerns with automated survival prediction:
 
    b) The Trolley Problem:
       • Is algorithmic triage equivalent to actively choosing who dies?
-      • Differs from random/first|come|first|served (no active choice)
+      • Differs from random/first-come-first-served (no active choice)
 
    c) Context Blindness:
       Algorithm cannot consider:
       • Pregnant woman (not visible in data)
       • Parent of orphaned children (family context)
-      • Doctor who could save others post|rescue (social utility)
+      • Doctor who could save others post-rescue (social utility)
       • Person's life achievements, relationships, meaning
 
    Example:
@@ -356,7 +356,7 @@ Automated survival prediction systems create a trilemma:
 
 There is no technical solution to this ethical problem. It requires:
   • Regulation (what models are allowed)
-  • Oversight (human|in|the|loop)  
+  • Oversight (human-in-the-loop)  
   • Transparency (explainable decisions)
   • Accountability (clear liability)
 
@@ -382,10 +382,10 @@ INSURANCE MODEL (Risk Assessment & Pricing):
 
 Purpose:  Estimate risk of claim (death/injury) to set premium prices
 Output:   Continuous risk score → premium amount (INR/USD per year)
-Horizon:  Long|term (decades)
+Horizon:  Long-term (decades)
 Optimize: Maximize profit (balance risk vs premium, avoid adverse selection)
 Features: Actuarial risk factors (health, lifestyle, occupation)
-Legal:    HEAVILY regulated (anti|discrimination laws)
+Legal:    HEAVILY regulated (anti-discrimination laws)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -408,20 +408,20 @@ KEY CHANGES REQUIRED:
    PROHIBITED FEATURES (varies by jurisdiction):
 
    United States:
-   • Gender|based pricing: BANNED in some states (Montana, California)
+   • Gender-based pricing: BANNED in some states (Montana, California)
    • Age discrimination: Allowed but regulated (Age Discrimination Act)
    • Race, religion: PROHIBITED (Title VII)
    • Genetic information: PROHIBITED (GINA — Genetic Information 
                                       Nondiscrimination Act, 2008)
 
    European Union:
-   • Gender|based pricing: BANNED (EU Gender Directive 2012)
-   • Age|based pricing: Heavily regulated
-   • GDPR restrictions on automated decision|making (Article 22)
+   • Gender-based pricing: BANNED (EU Gender Directive 2012)
+   • Age-based pricing: Heavily regulated
+   • GDPR restrictions on automated decision-making (Article 22)
 
    India:
    • IRDAI (Insurance Regulatory Authority) prohibits discrimination
-   • Gender|based pricing: Restricted
+   • Gender-based pricing: Restricted
    • Age: Allowed within limits
 
    Our Titanic Model VIOLATES These Laws:
@@ -431,39 +431,39 @@ KEY CHANGES REQUIRED:
 
 3. FEATURE ENGINEERING OVERHAUL
 
-   REMOVE (illegal/irrelevant for long|term risk):
+   REMOVE (illegal/irrelevant for long-term risk):
    ✗ Gender (illegal in many jurisdictions)
    ✗ Passenger class / Socioeconomic status (discriminatory)
-   ✗ Fare / Ticket price (not predictive of long|term mortality)
+   ✗ Fare / Ticket price (not predictive of long-term mortality)
    ✗ Embarkation port (irrelevant)
 
    ADD (actuarial risk factors):
-   ✓ Health history (pre|existing conditions, surgeries, medications)
+   ✓ Health history (pre-existing conditions, surgeries, medications)
    ✓ Family medical history (hereditary diseases)
    ✓ Lifestyle factors:
-     | Smoking status (yes/no, packs per day)
-     | Alcohol consumption (units per week)
-     | Exercise frequency (hours per week)
-     | BMI / obesity status
+     - Smoking status (yes/no, packs per day)
+     - Alcohol consumption (units per week)
+     - Exercise frequency (hours per week)
+     - BMI / obesity status
    ✓ Occupation (hazardous jobs → higher risk)
    ✓ Driving record (accidents, violations)
    ✓ Geographic location (pollution, crime rates, healthcare access)
    ✓ Genetic markers (if legal and consented)
 
-4. TEMPORAL MODELING (Long|Term Risk)
+4. TEMPORAL MODELING (Long-Term Risk)
 
    Disaster model: Predicts immediate outcome (next 2 hours)
-   Insurance model: Predicts risk over policy lifetime (10|30 years)
+   Insurance model: Predicts risk over policy lifetime (10-30 years)
 
    Requires:
-   • Age|based mortality curves (actuarial life tables)
-   • Time|varying covariates (health deteriorates with age)
-   • Cohort effects (generation|specific risk profiles)
-   • Survival analysis models (Cox proportional hazards, Kaplan|Meier)
+   • Age-based mortality curves (actuarial life tables)
+   • Time-varying covariates (health deteriorates with age)
+   • Cohort effects (generation-specific risk profiles)
+   • Survival analysis models (Cox proportional hazards, Kaplan-Meier)
 
    Example:
-   • 25|year|old: Low immediate risk, but 30|year horizon
-   • 65|year|old: Higher immediate risk, shorter horizon
+   • 25-year-old: Low immediate risk, but 30-year horizon
+   • 65-year-old: Higher immediate risk, shorter horizon
    • Premium must account for both current risk AND time horizon
 
 5. ADVERSARIAL ROBUSTNESS (Fraud Prevention)
@@ -473,15 +473,15 @@ KEY CHANGES REQUIRED:
 
    Adversarial Behaviors:
    • Underreport smoking, alcohol use
-   • Hide pre|existing conditions
+   • Hide pre-existing conditions
    • Falsify health records
    • Apply for insurance when already sick (adverse selection)
 
    Countermeasures Needed:
    • Medical exams (blood tests, BMI measurement)
-   • Third|party health record verification
+   • Third-party health record verification
    • Anomaly detection (statistical outliers flagged)
-   • Waiting periods (pre|existing condition exclusions)
+   • Waiting periods (pre-existing condition exclusions)
    • Claim investigation teams
 
 6. BUSINESS OPTIMIZATION (Profit vs Risk)
@@ -491,12 +491,12 @@ KEY CHANGES REQUIRED:
 
    Insurance Optimization:
 
-   Profit = Premium Revenue | Expected Claims | Operating Costs
+   Profit = Premium Revenue - Expected Claims - Operating Costs
 
    Must avoid:
    • Underpricing (lose money on claims)
    • Overpricing (lose customers to competitors)
-   • Adverse selection (only high|risk people buy insurance)
+   • Adverse selection (only high-risk people buy insurance)
 
    Risk Management:
    • Reinsurance (transfer extreme risk to reinsurers)
@@ -515,9 +515,9 @@ KEY CHANGES REQUIRED:
    Model must provide:
    • Feature importance (which factors matter most)
    • Counterfactual explanations ("if you change X, premium becomes Y")
-   • Human|interpretable reasoning
+   • Human-interpretable reasoning
 
-   Black|box neural networks are PROBLEMATIC for insurance.
+   Black-box neural networks are PROBLEMATIC for insurance.
    Prefer: Linear models, decision trees, GAMs (Generalized Additive Models)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -530,7 +530,7 @@ Input Features (Legally Compliant):
   • Smoking status (verified via medical exam)
   • Occupation risk category (actuarial tables)
   • Family history of specific diseases (heart disease, cancer, diabetes)
-  • Exercise frequency (self|reported but correlated with claims)
+  • Exercise frequency (self-reported but correlated with claims)
   • Location (zip code level, not individual)
 
 Prohibited Features:
@@ -564,7 +564,7 @@ Validation:
 SUMMARY OF CHANGES:
 
 | Aspect | Disaster Model | Insurance Model |
-|||||||||||||||||||||||||||||||||||||||||||||
+|--------|----------------|-----------------|
 | Goal | Save lives | Price risk |
 | Output | Binary (0/1) | Continuous (risk score) |
 | Horizon | Hours | Decades |
@@ -582,12 +582,12 @@ Our Titanic model would be ILLEGAL and INEFFECTIVE if used for insurance:
 
 • Illegal: Uses gender as primary feature (banned in EU, restricted in US/India)
 • Ineffective: Wrong features (no health data), wrong time horizon (immediate 
-               vs long|term), not adversarially robust (easy to game)
+               vs long-term), not adversarially robust (easy to game)
 
 Insurance underwriting requires:
   ✓ Actuarial science (not just ML)
   ✓ Regulatory compliance (remove prohibited features)
-  ✓ Long|term risk modeling (survival analysis)
+  ✓ Long-term risk modeling (survival analysis)
   ✓ Fraud prevention (verification mechanisms)
   ✓ Explainability (transparent models)
 
